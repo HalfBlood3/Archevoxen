@@ -1,8 +1,22 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import { auth } from '../firebase';
 import { Link } from 'react-router-dom';
 export default function Navbar() {
+  const [user, setUser] = React.useState(null);
+  const navigate = useNavigate();
+  React.useEffect(() => {
+    const unsub = auth.onAuthStateChanged(u => setUser(u));
+    return () => unsub();
+  }, []);
+
+  const handleLogout = async () => {
+    await auth.signOut();
+    navigate('/auth');
+  };
+
   return (
-    <nav style={styles.nav}>
+    <nav style={{...styles.nav, backgroundColor: 'var(--navbar-bg)'}}>
       <img
         src="/HackathonLogo2WithName1InBlack.png"
         alt="Archevoxen Logo"
@@ -10,13 +24,23 @@ export default function Navbar() {
       />
       <div style={styles.linksContainer}>
         {/* Home button removed */}
-        <Link to="/gauge-test" style={styles.link}>Gauge Test</Link>
-        <Link to="/dashboard" style={styles.link}>Dashboard</Link>
-        <span style={styles.section}>Practice</span>
-        <Link to="/vocabulary" style={styles.link}>Vocabulary</Link>
-        <Link to="/reading" style={styles.link}>Reading</Link>
-        <Link to="/pronunciation" style={styles.link}>Pronunciation</Link>
-        <Link to="/writing" style={styles.link}>Writing</Link>
+        <Link to="/gauge-test" style={{...styles.link, color: 'var(--navbar-link)'}}>Gauge Test</Link>
+        <Link to="/dashboard" style={{...styles.link, color: 'var(--navbar-link)'}}>Dashboard</Link>
+        <span style={{...styles.section, color: 'var(--navbar-section)'}}>Practice</span>
+        <Link to="/vocabulary" style={{...styles.link, color: 'var(--navbar-link)'}}>Vocabulary</Link>
+        <Link to="/reading" style={{...styles.link, color: 'var(--navbar-link)'}}>Reading</Link>
+        <Link to="/pronunciation" style={{...styles.link, color: 'var(--navbar-link)'}}>Pronunciation</Link>
+        <Link to="/writing" style={{...styles.link, color: 'var(--navbar-link)'}}>Writing</Link>
+        {user ? (
+          <>
+            <span style={{...styles.link, background: '#34495e', color: '#fff', cursor: 'default'}}>
+              {user.email}
+            </span>
+            <button onClick={handleLogout} style={{...styles.link, background: '#e74c3c', color: 'white', border: 'none', cursor: 'pointer'}}>Logout</button>
+          </>
+        ) : (
+          <Link to="/auth" style={{...styles.link, background: '#16a085', color: 'white'}}>Login / Signup</Link>
+        )}
       </div>
     </nav>
   );

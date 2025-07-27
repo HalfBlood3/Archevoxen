@@ -19,6 +19,14 @@ const readings = {
     {
       es: "El libro está sobre la mesa.",
       en: "The book is on the table."
+    },
+    {
+      es: "Mi familia es pequeña. Tengo un hermano y una hermana.",
+      en: "My family is small. I have a brother and a sister."
+    },
+    {
+      es: "La escuela está cerca de mi casa.",
+      en: "The school is near my house."
     }
   ],
   Intermediate: [
@@ -41,6 +49,14 @@ const readings = {
     {
       es: "A veces escribo cartas a mis amigos en otros países.",
       en: "Sometimes I write letters to my friends in other countries."
+    },
+    {
+      es: "El tiempo hoy es perfecto para caminar en el parque.",
+      en: "The weather today is perfect for walking in the park."
+    },
+    {
+      es: "Mi hermano es muy amable y le gusta ayudar a los demás.",
+      en: "My brother is very kind and likes to help others."
     }
   ],
   Advanced: [
@@ -63,6 +79,14 @@ const readings = {
     {
       es: "La comunicación efectiva es esencial en el ámbito profesional y personal.",
       en: "Effective communication is essential in both professional and personal settings."
+    },
+    {
+      es: "El liderazgo y la colaboración son claves para el éxito en proyectos grandes.",
+      en: "Leadership and collaboration are keys to success in large projects."
+    },
+    {
+      es: "La innovación requiere creatividad y trabajo en equipo.",
+      en: "Innovation requires creativity and teamwork."
     }
   ]
 };
