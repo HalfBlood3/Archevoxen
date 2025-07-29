@@ -15,8 +15,8 @@ function useVoiceReaderStreak(streak) {
 }
 
 export default function Streaks() {
-  useVoiceReaderStreak(streak);
   const [streak, setStreak] = useState(() => Number(localStorage.getItem('streak') || 0));
+  useVoiceReaderStreak(streak);
   const navigate = useNavigate();
   useEffect(() => {
     setStreak(Number(localStorage.getItem('streak') || 0));
